@@ -1,10 +1,10 @@
 CREATE TABLE `users` (
     `id` INT NOT NULL AUTO_INCREMENT,
     `user_id` VARCHAR(20) NOT NULL,
-    `user_pw` VARCHAR(32) NOT NULL,
-    `user_name` VARCHAR(16) NOT NULL,
-    `profile_pic` VARCHAR(100) NOT NULL,
-    `profile_msg` VARCHAR(100) NOT NULL,
+    `user_pw` VARCHAR(20) NOT NULL,
+    `user_name` VARCHAR(20) NOT NULL,
+    `profile_pic` VARCHAR(50) NOT NULL,
+    `profile_msg` VARCHAR(50) NOT NULL,
     `user_status` TINYINT(1) NOT NULL DEFAULT 0,
     `user_date` DATETIME NOT NULL,
     PRIMARY KEY (`id`)
@@ -14,7 +14,7 @@ CREATE TABLE `channels` (
     `id` INT NOT NULL AUTO_INCREMENT,
     `name` VARCHAR(20) NOT NULL,
     `channel_owner` INT NOT NULL,
-    `channel_link` VARCHAR(100) NOT NULL,
+    `channel_link` VARCHAR(50) NOT NULL,
     `capacity` INT NOT NULL,
     `status` TINYINT(1) NOT NULL DEFAULT 0,
     `channel_date` DATETIME NOT NULL,
