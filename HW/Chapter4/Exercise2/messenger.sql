@@ -19,7 +19,7 @@ CREATE TABLE `channels` (
     `status` TINYINT(1) NOT NULL DEFAULT 0,
     `channel_date` DATETIME NOT NULL,
     PRIMARY KEY (`id`),
-    FOREIGN KEY (`user`) REFERENCES `users`(`id`) ON DELETE CASCADE
+    FOREIGN KEY (`channel_owner`) REFERENCES `users`(`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `chats` (
@@ -50,5 +50,5 @@ CREATE TABLE `blocks` (
     `block_date` DATETIME NOT NULL,
     PRIMARY KEY (`id`),
     FOREIGN KEY (`blocker`) REFERENCES `users`(`id`) ON DELETE CASCADE,
-    FOREIGN KEY (`blocked`) REFERENCES `users`(`id`) ON DELETE CASCADE
+    FOREIGN KEY (`blockee`) REFERENCES `users`(`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
