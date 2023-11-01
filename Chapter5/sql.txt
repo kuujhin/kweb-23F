@@ -1,0 +1,67 @@
+터미널 실행
+
+기본 디렉토리에 Code A.1 내용으로 scores.sql 파일 만듬
+
+$mysql -ukwebuser -p
+$kwebpw
+
+or
+
+$mysql -uroot -p
+$****
+
+>show databases;
+(kwebdb1 사용. 없다면 >create database kwebdb1)
+>use kwebdb1;
+>show tables;
+
+$mysql -ukwebuser -pkwebpw -Dkwebdb1 < C:\Users\kdoub\scores.sql
+(powershell말고 cmd에서 실행)
+
+>select * from scores;
+>select *, .45 * `midterm` + .55 * `final` from scores;
+(column명은 ``없어도 가능)
+>select *, .45 * midterm + .55 * final AS total from scores;
+
+> SELECT *, Round(.45 * `midterm` + .55 * `final`, -1) AS `rough_total` FROM `scores`;
+> SELECT Avg(`midterm`), Stddev(`midterm`) FROM `scores` WHERE `course` = 'Machine Learning';
+> SELECT Count(*) AS `80s_count`, Group_concat(`student`) AS `students` FROM `scores` WHERE `final` >= 80 AND `final` < 90;
+> SELECT `course`, Count(*) AS `cnt`, Avg(`final`) AS `avg`, Stddev(`final`) AS `stddev` FROM `scores` GROUP BY `course`;
+
+Round, Aggregate FUnctions(Avg, Count, Group_concat, Max, Min, Stddev, Sum)
+
+> SELECT `student`, Avg(.45 * `midterm` + .55 * `final`) AS `total_avg` FROM `scores` GROUP BY `student` ORDER BY `total_avg` DESC;
+> SELECT *, .45 * `midterm` + .55 * `final` AS `total` FROM `scores` ORDER BY `total` DESC LIMIT 2, 4;
+
+ORDER BY, LIMIT
+
+$ mysql -ukwebuser -pkwebpw -Dkwebdb1 < C:\Users\kdoub\A.2.sql
+> SELECT `tb1`.`data1`, `tb2`.`data2` FROM `tb1` INNER JOIN `tb2` ON `tb1`.`id` = `tb2`.`id`;
+> SELECT tb1.id, `tb1`.`data1`, `tb2`.`data2` FROM `tb1` INNER JOIN `tb2` ON `tb1`.`id` = `tb2`.`id`;
+> SELECT `tb1`.`data1`, `tb2`.`data2` FROM `tb1` LEFT OUTER JOIN `tb2` ON `tb1`.`id` = `tb2`.`id`;
+> SELECT `tb1`.`data1`, `tb2`.`data2` FROM `tb1` RIGHT OUTER JOIN `tb2` ON `tb1`.`id` = `tb2`.`id`;
+
+INNER JOIN, (LEFT,RIGHT) OUTER JOIN
+
+$ mysql -ukwebuser -pkwebpw -Dkwebdb1 < C:\Users\kdoub\A.3.sql
+> select * from colleges;
+> select * from courses;
+> select * from departments;
+
+> SELECT `departments`.`name`, `code`, `credit`, `period` FROM `courses` 
+INNER JOIN `departments` on `courses`.`department` = `departments`.`id`;
+> SELECT `courses`.`id`, `colleges`.`name` AS `college`, `dept`.`name` AS `department`,
+`courses`.`name` AS `course`, `courses`.`code`, `credit`, `period` FROM `courses`
+INNER JOIN `departments` AS `dept` ON `courses`.`department` = `dept`.`id`
+INNER JOIN `colleges` ON `dept`.`college` = `colleges`.`id`;
+
+AS 키워드로 한 테이블을 여러번 JOIN에 사용
+
+database.js 폴더에
+
+npm init -y
+npm install mysql2
+
+node index.js
+
+    
