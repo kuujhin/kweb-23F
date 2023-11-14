@@ -1,0 +1,58 @@
+6.1 Hash Function and Encryption
+
+Encryption
+deterministic 알고리즘 -> 암호화된 pw 끼리 비교
+
+Hash Function
+해시함수는 결정론적 알로리븜
+입력값과 무관하게 길이 일정
+입력값의 작은변화가 해시값의 큰 변화 -> 눈사태 효과
+
+Simple Encryption using PBKDF2
+const digest = await pbkdf2(text, '', 1, KEY_LEN, ALGO);
+pbkdf2  인자1 password(암호화할 문자열)
+        인자2 salt (비밀번호를 더어렵게)
+        인자3 iterations : 반복횟수
+        인자4 key length (byte 단위의 key 길이)
+        인자4 Algorithm
+> node hashing.js
+
+Salting
+레인보우 테이블 사용 어렵게 하는 방법
+비밀번호 -Hash()-> 암호
+비밀번호 -Salt-> 비밀번호+a -Hash()-> 암호
+암호화한 pw와 salt 값 둘다 db에 저장해야함
+
+Key Stretching
+iteration 값도 저장
+
+Password Generation and Verification
+해시값, 알고리즘, 길이, salt, iter 정보 저장
+
+6.2 HTTP Cookie and Session
+HTTP Cookie
+쿠키를 이용한 사용자 식별
+네트워크 부하 초래
+취약한 보안
+
+Session
+서버 측 부하 ->서버 다운
+여전한 보안 문제 -> 세션 ID 탈취
+
+>npm install express
+>npm install express-session
+
+
+http://localhost:3000/set/1
+Headers - Set-Cookie 값
+http://localhost:3000/get 
+Headers에 Cookie 값 넣어줌
+http://localhost:3000/destroy
+
+chrome 에서도 실행
+f12>application>Cookies 확인
+
+
+Cross-Site Scripting (XSS)
+
+Http Only로 방어
