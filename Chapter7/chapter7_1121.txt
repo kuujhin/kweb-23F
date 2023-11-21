@@ -1,0 +1,22 @@
+index.js 작성
+await UserDAO.create("username1", "password1", "nickname1");
+await UserDAO.create("username2", "password2", "nickname2");
+await ArticleDAO.create("title1", "content1", {id: 1});
+await ArticleDAO.create("title2", "content2", {id: 1});
+await ArticleDAO.create("title3", "content3", {id: 2});
+console.log("done!");
+
+>npm run start
+
+mysql에서 create 되었는지 확인
+
+
+index.js에서 create와 다른 함수들 확인 가능
+
+const user = await UserDAO.getByUsername("username1");
+console.log(user);
+const article = await ArticleDAO.getById(1);
+console.log(article);
+
+
+

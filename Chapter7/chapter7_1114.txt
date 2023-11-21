@@ -19,10 +19,3 @@ views pug 파일
 
 DAO
 copilot
-
-
-11/21
-index.js 작성후
-npm run start
-
-mysql 확인
